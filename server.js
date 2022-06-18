@@ -92,6 +92,7 @@ router.get("/create-and-save-person", function (req, res, next) {
     if (err) {
       return next(err);
     }
+    console.log("data", data);
     if (!data) {
       console.log("Missing `done()` argument");
       return next({ message: "Missing callback argument" });
@@ -101,7 +102,7 @@ router.get("/create-and-save-person", function (req, res, next) {
         return next(err);
       }
       res.json(pers);
-      pers.remove();
+      //pers.remove();
     });
   });
 });
