@@ -97,7 +97,17 @@ const findEditThenSave = (personId, done) => {
   })
 }
 
-
+// Perform New Updates on a Document Using model.findOneAndUpdate()
+const findAndUpdate = (personName, done) => {
+  console.log("personName:", personName);
+  Person.findOneAndUpdate({ name: personName }, { age: 20 }, { new: true }, (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      done(null, data);
+    }
+  });
+}
 
 // Exports 
 
@@ -108,3 +118,4 @@ exports.findPeopleByName = findPeopleByName;
 exports.findOneByFood = findOneByFood;
 exports.findPersonById = findPersonById;
 exports.findEditThenSave = findEditThenSave;
+exports.findAndUpdate = findAndUpdate;
