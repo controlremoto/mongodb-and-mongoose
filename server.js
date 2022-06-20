@@ -102,7 +102,7 @@ router.get("/create-and-save-person", function (req, res, next) {
         return next(err);
       }
       res.json(pers);
-      pers.remove();
+      //pers.remove();
     });
   });
 });
@@ -156,7 +156,7 @@ router.post("/find-all-by-name", function (req, res, next) {
         return next({ message: "Missing callback argument" });
       }
       res.json(data);
-      Person.remove().exec();
+      //Person.remove().exec();
     });
   });
 });

@@ -39,8 +39,24 @@ const createManyPeople = (arrayOfPeople, done) => {
     }
   })
 };
+
+
+const findPeopleByName = (personName, done) => {
+  console.log("personName:", personName)
+  // executes, passing results to callback
+  Person.find({ name: personName }, (err, docs) => {
+    if (err) {
+      console.error(err);
+    } else {
+      done(null, docs);
+    }
+  });
+};
+
+
 // Exports 
 
 exports.PersonModel = Person;
 exports.createAndSavePerson = createAndSavePerson;
 exports.createManyPeople = createManyPeople;
+exports.findPeopleByName = findPeopleByName;
