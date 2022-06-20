@@ -133,6 +133,23 @@ const removeManyPeople = (done) => {
   })
 }
 
+const queryChain = (done) => {
+  const foodToSearch = "burrito";
+  Person.find({ favoriteFoods: foodToSearch })
+    .sort({ name: 1 })
+    .limit(2)
+    .select({ age: 0 })
+    .exec((err, data) => {
+      if (err) {
+        console.error(err);
+      } else {
+        done(null, data);
+      }
+    });
+};
+
+
+
 // Exports 
 
 exports.PersonModel = Person;
@@ -145,3 +162,4 @@ exports.findEditThenSave = findEditThenSave;
 exports.findAndUpdate = findAndUpdate;
 exports.removeById = removeById;
 exports.removeManyPeople = removeManyPeople;
+exports.queryChain = queryChain;

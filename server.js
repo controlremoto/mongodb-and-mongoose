@@ -383,11 +383,14 @@ router.post("/query-tools", function (req, res, next) {
       return next(err);
     }
     Person.create(req.body, function (err, pers) {
+      console.log("[req.body]", req.body);
+      console.log("[created-person]", pers);
       if (err) {
         return next(err);
       }
       try {
         chain(function (err, data) {
+          console.log("[create.chain] data:",data)
           clearTimeout(t);
           if (err) {
             return next(err);
