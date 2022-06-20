@@ -110,7 +110,6 @@ const findAndUpdate = (personName, done) => {
 }
 
 // Use removeById to remove a document by its _id
-
 const removeById = (personId, done) => {
   Person.findByIdAndRemove(personId, (err, data) => {
     if (err) {
