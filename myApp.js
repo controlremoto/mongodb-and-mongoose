@@ -44,22 +44,22 @@ const createManyPeople = (arrayOfPeople, done) => {
 // Model.find() returns an array of occurrences
 const findPeopleByName = (personName, done) => {
   // executes, passing results to callback
-  Person.find({ name: personName }, (err, docs) => {
+  Person.find({ name: personName }, (err, data) => {
     if (err) {
       console.error(err);
     } else {
-      done(null, docs);
+      done(null, data);
     }
   });
 };
 
 // Model.findOne only one document (not an array)
 const findOneByFood = (food, done) => {
-  Person.findOne({ favoriteFoods: food }, (err, docs) => {
+  Person.findOne({ favoriteFoods: food }, (err, data) => {
     if (err) {
       console.log(err)
     } else {
-      done(null, docs);
+      done(null, data);
     }
   })
 };
@@ -67,14 +67,37 @@ const findOneByFood = (food, done) => {
 // Model.findById will find a record by its unique id
 
 const findPersonById = (personId, done) => {
-  Person.findById(personId, (err, doc) => {
+  Person.findById(personId, (err, data) => {
     if (err) {
       console.error(err);
     } else {
-      done(null, doc)
+      done(null, data)
     }
   })
 }
+
+// Find a record by its ID and update by adding a new value to favoriteFoods array
+const findEditThenSave = (personId, done) => {
+  const foodToAdd = "hamburger";
+  Person.findById(personId, (err, data) => {
+    console.log("[findById] data:", data);
+    if (err) {
+      console.error(err);
+    } else {
+      data.favoriteFoods.push(foodToAdd);
+      data.save((err, data) => {
+        console.log("[save] data:", data);
+        if (err) {
+          console.error(err);
+        } else {
+          done(null, data);
+        }
+      })
+    }
+  })
+}
+
+
 
 // Exports 
 
@@ -84,3 +107,4 @@ exports.createManyPeople = createManyPeople;
 exports.findPeopleByName = findPeopleByName;
 exports.findOneByFood = findOneByFood;
 exports.findPersonById = findPersonById;
+exports.findEditThenSave = findEditThenSave;

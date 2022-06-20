@@ -237,7 +237,7 @@ router.post("/find-edit-save", function (req, res, next) {
           return next({ message: "Missing callback argument" });
         }
         res.json(data);
-        p.remove();
+        //p.remove();
       });
     } catch (e) {
       console.log(e);
