@@ -64,6 +64,17 @@ const findOneByFood = (food, done) => {
   })
 };
 
+// Model.findById will find a record by its unique id
+
+const findPersonById = (personId, done) => {
+  Person.findById(personId, (err, doc) => {
+    if (err) {
+      console.error(err);
+    } else {
+      done(null, doc)
+    }
+  })
+}
 
 // Exports 
 
@@ -72,3 +83,4 @@ exports.createAndSavePerson = createAndSavePerson;
 exports.createManyPeople = createManyPeople;
 exports.findPeopleByName = findPeopleByName;
 exports.findOneByFood = findOneByFood;
+exports.findPersonById = findPersonById;

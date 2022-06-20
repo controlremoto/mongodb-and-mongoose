@@ -211,7 +211,7 @@ router.get("/find-by-id", function (req, res, next) {
         return next({ message: "Missing callback argument" });
       }
       res.json(data);
-      p.remove();
+      //p.remove();
     });
   });
 });
