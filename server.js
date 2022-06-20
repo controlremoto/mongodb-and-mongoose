@@ -329,11 +329,14 @@ router.post("/remove-many-people", function (req, res, next) {
       next({ message: "timeout" });
     }, TIMEOUT);
     Person.create(req.body, function (err, pers) {
+      console.log("[req.body]", req.body);
+      console.log("[created-person]", pers);
       if (err) {
         return next(err);
       }
       try {
         removeMany(function (err, data) {
+          console.log("[removeMany] data:",data)
           clearTimeout(t);
           if (err) {
             return next(err);

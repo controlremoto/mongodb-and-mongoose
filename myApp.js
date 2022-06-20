@@ -120,6 +120,19 @@ const removeById = (personId, done) => {
   })
 }
 
+// Delete Many Documents with model.remove()
+
+const removeManyPeople = (done) => {
+  const nameToRemove = "Mary";
+  Person.remove({ name: nameToRemove }, (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      done(null, data);
+    }
+  })
+}
+
 // Exports 
 
 exports.PersonModel = Person;
@@ -131,3 +144,4 @@ exports.findPersonById = findPersonById;
 exports.findEditThenSave = findEditThenSave;
 exports.findAndUpdate = findAndUpdate;
 exports.removeById = removeById;
+exports.removeManyPeople = removeManyPeople;
