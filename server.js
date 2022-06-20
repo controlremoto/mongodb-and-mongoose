@@ -143,6 +143,8 @@ router.post("/find-all-by-name", function (req, res, next) {
     next({ message: "timeout" });
   }, TIMEOUT);
   Person.create(req.body, function (err, pers) {
+    console.log("pers", pers);
+    console.log("req.body", req.body);
     if (err) {
       return next(err);
     }
@@ -167,7 +169,10 @@ router.post("/find-one-by-food", function (req, res, next) {
     next({ message: "timeout" });
   }, TIMEOUT);
   let p = new Person(req.body);
+
   p.save(function (err, pers) {
+    console.log("req.body:", req.body);
+    console.log("pers:", pers);
     if (err) {
       return next(err);
     }
@@ -181,7 +186,7 @@ router.post("/find-one-by-food", function (req, res, next) {
         return next({ message: "Missing callback argument" });
       }
       res.json(data);
-      p.remove();
+      //p.remove();
     });
   });
 });

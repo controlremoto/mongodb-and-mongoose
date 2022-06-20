@@ -30,6 +30,7 @@ const arrayOfPeople = [
   { name: "Lance Bogrol", age: 27, favoriteFoods: ["Rice", "Salad"] },
   { name: "Bodrum Salvador", age: 43, favoriteFoods: ["Deer", "Chicken", "Ribs"] }
 ]
+//Person.create(arrayOfPeople); // uncomment to load arrayOfPeople into person model
 const createManyPeople = (arrayOfPeople, done) => {
   Person.create(arrayOfPeople, (err, data) => {
     if (err) {
@@ -40,9 +41,8 @@ const createManyPeople = (arrayOfPeople, done) => {
   })
 };
 
-
+// Model.find() returns an array of occurrences
 const findPeopleByName = (personName, done) => {
-  console.log("personName:", personName)
   // executes, passing results to callback
   Person.find({ name: personName }, (err, docs) => {
     if (err) {
@@ -53,6 +53,17 @@ const findPeopleByName = (personName, done) => {
   });
 };
 
+// Model.findOne only one document (not an array)
+const findOneByFood = (food, done) => {
+  Person.findOne({ favoriteFoods: food }, (err, docs) => {
+    if (err) {
+      console.log(err)
+    } else {
+      done(null, docs);
+    }
+  })
+};
+
 
 // Exports 
 
@@ -60,3 +71,4 @@ exports.PersonModel = Person;
 exports.createAndSavePerson = createAndSavePerson;
 exports.createManyPeople = createManyPeople;
 exports.findPeopleByName = findPeopleByName;
+exports.findOneByFood = findOneByFood;
